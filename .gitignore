@@ -1,0 +1,8 @@
+/Download-Cache
+.DS_Store
+._*
+xcuserdata
+Icon[^#-~]
+.xccheckout
+*.xcscmblueprint
+*.profraw

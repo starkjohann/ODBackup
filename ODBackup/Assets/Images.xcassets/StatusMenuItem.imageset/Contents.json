@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "filename" : "1654351_arrow_backup_clock_data_refresh_icon 2.svg",
+      "idiom" : "mac",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "1654351_arrow_backup_clock_data_refresh_icon 1.svg",
+      "idiom" : "mac",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

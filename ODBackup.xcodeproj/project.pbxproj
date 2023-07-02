@@ -1,0 +1,711 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		400E897F2A44985100FFE8F6 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400E897E2A44985100FFE8F6 /* SettingsWindowController.swift */; };
+		4019A87B2A20C4EF00D47FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4019A87A2A20C4EF00D47FF3 /* AppDelegate.swift */; };
+		4019A8802A20C4F300D47FF3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4019A87E2A20C4F300D47FF3 /* MainMenu.xib */; };
+		406F5C7D2A4DF1D900B8C121 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F5C7C2A4DF1D900B8C121 /* ResourceManager.swift */; };
+		406F5C7F2A4DF8C300B8C121 /* CodeSignatureChecking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F5C7E2A4DF8C300B8C121 /* CodeSignatureChecking.swift */; };
+		4080583C2A38CC01007A02C1 /* LogFilesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080583B2A38CC01007A02C1 /* LogFilesModel.swift */; };
+		4088E7002A2255F200004672 /* SimpleTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4088E6FF2A2255F200004672 /* SimpleTableController.swift */; };
+		4088E7042A237E2200004672 /* BackupLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4088E7032A237E2200004672 /* BackupLogic.swift */; };
+		4088E7062A237E8C00004672 /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4088E7052A237E8C00004672 /* ConfigurationModel.swift */; };
+		4088E7322A23CADD00004672 /* at.obdev.odbackup.daemon.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4088E72F2A23C97300004672 /* at.obdev.odbackup.daemon.plist */; };
+		4088E7332A24C76C00004672 /* BackupDaemonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4088E7182A23C52500004672 /* BackupDaemonProtocol.swift */; };
+		4088E7352A24CF2800004672 /* DaemonProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4088E7342A24CF2800004672 /* DaemonProxy.swift */; };
+		40B487FC2A44EE40002DA734 /* LogFilesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40B487FB2A44EE40002DA734 /* LogFilesWindow.xib */; };
+		40B487FE2A44F08E002DA734 /* LogFilesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B487FD2A44F08E002DA734 /* LogFilesWindowController.swift */; };
+		40B488002A44F25E002DA734 /* ExtractWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40B487FF2A44F25E002DA734 /* ExtractWindow.xib */; };
+		40B488022A45850D002DA734 /* ExtractWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B488012A45850D002DA734 /* ExtractWindowController.swift */; };
+		40B488042A45A3E5002DA734 /* NSAlert_presentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B488032A45A3E5002DA734 /* NSAlert_presentError.swift */; };
+		40B488062A45AE77002DA734 /* FileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B488052A45AE77002DA734 /* FileNode.swift */; };
+		40C626882A445FB3002EBD14 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C626872A445FB3002EBD14 /* MenuController.swift */; };
+		40D1178B2A44CEF000FB25A0 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D1178A2A44CEF000FB25A0 /* SettingsWindow.xib */; };
+		40DAB6792A3F6C800052826E /* StaticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAB6782A3F6C800052826E /* StaticConfiguration.swift */; };
+		40DAB67A2A3F6C800052826E /* StaticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAB6782A3F6C800052826E /* StaticConfiguration.swift */; };
+		40DAB67B2A3F9CB60052826E /* PipeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D2792A2A788D00628193 /* PipeReader.swift */; };
+		40E8AA8A2A447E2E004CC38D /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8AA892A447E2D004CC38D /* Formatters.swift */; };
+		40E9D2772A2A74DE00628193 /* BackupDaemonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4088E7182A23C52500004672 /* BackupDaemonProtocol.swift */; };
+		40E9D2782A2A752F00628193 /* ODBackupDaemon.app in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 40E9D25F2A2A725D00628193 /* ODBackupDaemon.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		40E9D27E2A2A788D00628193 /* PipeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D2792A2A788D00628193 /* PipeReader.swift */; };
+		40E9D27F2A2A788D00628193 /* odbackup.sh in Resources */ = {isa = PBXBuildFile; fileRef = 40E9D27A2A2A788D00628193 /* odbackup.sh */; };
+		40E9D2802A2A788D00628193 /* BackupDaemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D27B2A2A788D00628193 /* BackupDaemon.swift */; };
+		40E9D2812A2A788D00628193 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D27D2A2A788D00628193 /* main.swift */; };
+		40E9D2862A2BE38100628193 /* BackupClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D2852A2BE38100628193 /* BackupClientProtocol.swift */; };
+		40E9D2872A2BE38100628193 /* BackupClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D2852A2BE38100628193 /* BackupClientProtocol.swift */; };
+		40E9D28C2A2D15BD00628193 /* ProgressStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E9D28B2A2D15BC00628193 /* ProgressStatus.swift */; };
+		40F5DB962A509C7D00395C84 /* StringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F5DB952A509C7D00395C84 /* StringRepresentable.swift */; };
+		40F5DB982A50A77600395C84 /* InfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F5DB972A50A77600395C84 /* InfoWindow.xib */; };
+		40F5DB9A2A50A7FF00395C84 /* InfoWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F5DB992A50A7FF00395C84 /* InfoWindowController.swift */; };
+		40F5DB9C2A50B5C400395C84 /* SettingsWindowController_Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F5DB9B2A50B5C400395C84 /* SettingsWindowController_Help.swift */; };
+		40F5DB9E2A51FE7A00395C84 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402782262A47B0A80004E9D2 /* Images.xcassets */; };
+		40F5DBA02A52010300395C84 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F5DB9F2A52010300395C84 /* AppIcon.xcassets */; };
+		40F5DBA22A52014E00395C84 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40F5DB9F2A52010300395C84 /* AppIcon.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4088E7222A23C52500004672 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				40E9D2782A2A752F00628193 /* ODBackupDaemon.app in Embed XPC Services */,
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4088E7312A23CA9500004672 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchDaemons;
+			dstSubfolderSpec = 1;
+			files = (
+				4088E7322A23CADD00004672 /* at.obdev.odbackup.daemon.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		400E897E2A44985100FFE8F6 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		4019A8772A20C4EF00D47FF3 /* ODBackup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ODBackup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4019A87A2A20C4EF00D47FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4019A87F2A20C4F300D47FF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		402692C62A521CFE001A67C3 /* make-release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "make-release.sh"; sourceTree = "<group>"; };
+		402782262A47B0A80004E9D2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		406F5C7C2A4DF1D900B8C121 /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
+		406F5C7E2A4DF8C300B8C121 /* CodeSignatureChecking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeSignatureChecking.swift; sourceTree = "<group>"; };
+		4080583B2A38CC01007A02C1 /* LogFilesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFilesModel.swift; sourceTree = "<group>"; };
+		4088E6FF2A2255F200004672 /* SimpleTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableController.swift; sourceTree = "<group>"; };
+		4088E7032A237E2200004672 /* BackupLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupLogic.swift; sourceTree = "<group>"; };
+		4088E7052A237E8C00004672 /* ConfigurationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
+		4088E7182A23C52500004672 /* BackupDaemonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupDaemonProtocol.swift; sourceTree = "<group>"; };
+		4088E72F2A23C97300004672 /* at.obdev.odbackup.daemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = at.obdev.odbackup.daemon.plist; sourceTree = "<group>"; };
+		4088E7342A24CF2800004672 /* DaemonProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaemonProxy.swift; sourceTree = "<group>"; };
+		4088E7372A24D63500004672 /* NSXPCConnection+AuditToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSXPCConnection+AuditToken.h"; sourceTree = "<group>"; };
+		4088E7382A24D6A400004672 /* ODBackup-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODBackup-Bridging-Header.h"; sourceTree = "<group>"; };
+		40B487FB2A44EE40002DA734 /* LogFilesWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogFilesWindow.xib; sourceTree = "<group>"; };
+		40B487FD2A44F08E002DA734 /* LogFilesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFilesWindowController.swift; sourceTree = "<group>"; };
+		40B487FF2A44F25E002DA734 /* ExtractWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExtractWindow.xib; sourceTree = "<group>"; };
+		40B488012A45850D002DA734 /* ExtractWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractWindowController.swift; sourceTree = "<group>"; };
+		40B488032A45A3E5002DA734 /* NSAlert_presentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlert_presentError.swift; sourceTree = "<group>"; };
+		40B488052A45AE77002DA734 /* FileNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNode.swift; sourceTree = "<group>"; };
+		40C626872A445FB3002EBD14 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		40D1178A2A44CEF000FB25A0 /* SettingsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
+		40DAB6782A3F6C800052826E /* StaticConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticConfiguration.swift; sourceTree = "<group>"; };
+		40E8AA892A447E2D004CC38D /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		40E9D25F2A2A725D00628193 /* ODBackupDaemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ODBackupDaemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E9D26E2A2A72DC00628193 /* ODBackupDaemon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ODBackupDaemon-Bridging-Header.h"; sourceTree = "<group>"; };
+		40E9D2762A2A733600628193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E9D2792A2A788D00628193 /* PipeReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipeReader.swift; sourceTree = "<group>"; };
+		40E9D27A2A2A788D00628193 /* odbackup.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = odbackup.sh; sourceTree = "<group>"; };
+		40E9D27B2A2A788D00628193 /* BackupDaemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupDaemon.swift; sourceTree = "<group>"; };
+		40E9D27D2A2A788D00628193 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		40E9D2852A2BE38100628193 /* BackupClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupClientProtocol.swift; sourceTree = "<group>"; };
+		40E9D2882A2CB88500628193 /* obtainBorg.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = obtainBorg.sh; sourceTree = "<group>"; };
+		40E9D28B2A2D15BC00628193 /* ProgressStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStatus.swift; sourceTree = "<group>"; };
+		40F5DB952A509C7D00395C84 /* StringRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRepresentable.swift; sourceTree = "<group>"; };
+		40F5DB972A50A77600395C84 /* InfoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoWindow.xib; sourceTree = "<group>"; };
+		40F5DB992A50A7FF00395C84 /* InfoWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWindowController.swift; sourceTree = "<group>"; };
+		40F5DB9B2A50B5C400395C84 /* SettingsWindowController_Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController_Help.swift; sourceTree = "<group>"; };
+		40F5DB9F2A52010300395C84 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		40F5DBA32A52023C00395C84 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		40F5DBA42A5203DC00395C84 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4019A8742A20C4EF00D47FF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40E9D25C2A2A725D00628193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4019A86E2A20C4EF00D47FF3 = {
+			isa = PBXGroup;
+			children = (
+				402692C52A521CE1001A67C3 /* Build */,
+				40F5DBA42A5203DC00395C84 /* License.txt */,
+				4019A8792A20C4EF00D47FF3 /* ODBackup */,
+				40E9D2602A2A725D00628193 /* ODBackupDaemon */,
+				4019A8782A20C4EF00D47FF3 /* Products */,
+				40F5DBA32A52023C00395C84 /* README.md */,
+				4088E73C2A24D79B00004672 /* Shared */,
+			);
+			sourceTree = "<group>";
+		};
+		4019A8782A20C4EF00D47FF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4019A8772A20C4EF00D47FF3 /* ODBackup.app */,
+				40E9D25F2A2A725D00628193 /* ODBackupDaemon.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4019A8792A20C4EF00D47FF3 /* ODBackup */ = {
+			isa = PBXGroup;
+			children = (
+				4019A87A2A20C4EF00D47FF3 /* AppDelegate.swift */,
+				401BC8032A47ACA200F3529E /* Assets */,
+				4088E72F2A23C97300004672 /* at.obdev.odbackup.daemon.plist */,
+				4088E7032A237E2200004672 /* BackupLogic.swift */,
+				4088E7052A237E8C00004672 /* ConfigurationModel.swift */,
+				4088E7342A24CF2800004672 /* DaemonProxy.swift */,
+				40B488012A45850D002DA734 /* ExtractWindowController.swift */,
+				40B488052A45AE77002DA734 /* FileNode.swift */,
+				40E8AA892A447E2D004CC38D /* Formatters.swift */,
+				40F5DB992A50A7FF00395C84 /* InfoWindowController.swift */,
+				4080583B2A38CC01007A02C1 /* LogFilesModel.swift */,
+				40B487FD2A44F08E002DA734 /* LogFilesWindowController.swift */,
+				40C626872A445FB3002EBD14 /* MenuController.swift */,
+				40B488032A45A3E5002DA734 /* NSAlert_presentError.swift */,
+				4088E7382A24D6A400004672 /* ODBackup-Bridging-Header.h */,
+				40E9D28B2A2D15BC00628193 /* ProgressStatus.swift */,
+				401BC8002A47ABF300F3529E /* Resources */,
+				40F5DB9B2A50B5C400395C84 /* SettingsWindowController_Help.swift */,
+				400E897E2A44985100FFE8F6 /* SettingsWindowController.swift */,
+				4088E6FF2A2255F200004672 /* SimpleTableController.swift */,
+				40DAB6782A3F6C800052826E /* StaticConfiguration.swift */,
+				40F5DB952A509C7D00395C84 /* StringRepresentable.swift */,
+			);
+			path = ODBackup;
+			sourceTree = "<group>";
+		};
+		401BC8002A47ABF300F3529E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				40B487FF2A44F25E002DA734 /* ExtractWindow.xib */,
+				40F5DB972A50A77600395C84 /* InfoWindow.xib */,
+				40B487FB2A44EE40002DA734 /* LogFilesWindow.xib */,
+				4019A87E2A20C4F300D47FF3 /* MainMenu.xib */,
+				40D1178A2A44CEF000FB25A0 /* SettingsWindow.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		401BC8032A47ACA200F3529E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				402782262A47B0A80004E9D2 /* Images.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		402692C52A521CE1001A67C3 /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				402692C62A521CFE001A67C3 /* make-release.sh */,
+			);
+			path = Build;
+			sourceTree = "<group>";
+		};
+		4088E73C2A24D79B00004672 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				40F5DBA12A52010F00395C84 /* Assets */,
+				40E9D2852A2BE38100628193 /* BackupClientProtocol.swift */,
+				4088E7182A23C52500004672 /* BackupDaemonProtocol.swift */,
+				4088E7372A24D63500004672 /* NSXPCConnection+AuditToken.h */,
+				40E9D2792A2A788D00628193 /* PipeReader.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		40E9D2602A2A725D00628193 /* ODBackupDaemon */ = {
+			isa = PBXGroup;
+			children = (
+				40E9D27B2A2A788D00628193 /* BackupDaemon.swift */,
+				406F5C7E2A4DF8C300B8C121 /* CodeSignatureChecking.swift */,
+				40E9D2762A2A733600628193 /* Info.plist */,
+				40E9D27D2A2A788D00628193 /* main.swift */,
+				40E9D2882A2CB88500628193 /* obtainBorg.sh */,
+				40E9D27A2A2A788D00628193 /* odbackup.sh */,
+				40E9D26E2A2A72DC00628193 /* ODBackupDaemon-Bridging-Header.h */,
+				406F5C7C2A4DF1D900B8C121 /* ResourceManager.swift */,
+			);
+			path = ODBackupDaemon;
+			sourceTree = "<group>";
+		};
+		40F5DBA12A52010F00395C84 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				40F5DB9F2A52010300395C84 /* AppIcon.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4019A8762A20C4EF00D47FF3 /* ODBackup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4019A8842A20C4F300D47FF3 /* Build configuration list for PBXNativeTarget "ODBackup" */;
+			buildPhases = (
+				4019A8732A20C4EF00D47FF3 /* Sources */,
+				4019A8742A20C4EF00D47FF3 /* Frameworks */,
+				4019A8752A20C4EF00D47FF3 /* Resources */,
+				4088E7222A23C52500004672 /* Embed XPC Services */,
+				4088E7312A23CA9500004672 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ODBackup;
+			productName = ODBackup;
+			productReference = 4019A8772A20C4EF00D47FF3 /* ODBackup.app */;
+			productType = "com.apple.product-type.application";
+		};
+		40E9D25E2A2A725D00628193 /* ODBackupDaemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40E9D26B2A2A725F00628193 /* Build configuration list for PBXNativeTarget "ODBackupDaemon" */;
+			buildPhases = (
+				40E9D25B2A2A725D00628193 /* Sources */,
+				40E9D25C2A2A725D00628193 /* Frameworks */,
+				40E9D28A2A2CBC8500628193 /* Run obtainBorg.sh */,
+				40E9D25D2A2A725D00628193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ODBackupDaemon;
+			productName = ODBackupDaemon;
+			productReference = 40E9D25F2A2A725D00628193 /* ODBackupDaemon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4019A86F2A20C4EF00D47FF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					4019A8762A20C4EF00D47FF3 = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
+					};
+					40E9D25E2A2A725D00628193 = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
+					};
+				};
+			};
+			buildConfigurationList = 4019A8722A20C4EF00D47FF3 /* Build configuration list for PBXProject "ODBackup" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4019A86E2A20C4EF00D47FF3;
+			productRefGroup = 4019A8782A20C4EF00D47FF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4019A8762A20C4EF00D47FF3 /* ODBackup */,
+				40E9D25E2A2A725D00628193 /* ODBackupDaemon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4019A8752A20C4EF00D47FF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40B488002A44F25E002DA734 /* ExtractWindow.xib in Resources */,
+				40B487FC2A44EE40002DA734 /* LogFilesWindow.xib in Resources */,
+				40D1178B2A44CEF000FB25A0 /* SettingsWindow.xib in Resources */,
+				40F5DB9E2A51FE7A00395C84 /* Images.xcassets in Resources */,
+				40F5DBA02A52010300395C84 /* AppIcon.xcassets in Resources */,
+				4019A8802A20C4F300D47FF3 /* MainMenu.xib in Resources */,
+				40F5DB982A50A77600395C84 /* InfoWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40E9D25D2A2A725D00628193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40F5DBA22A52014E00395C84 /* AppIcon.xcassets in Resources */,
+				40E9D27F2A2A788D00628193 /* odbackup.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		40E9D28A2A2CBC8500628193 /* Run obtainBorg.sh */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run obtainBorg.sh";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ODBackupDaemon/obtainBorg.sh\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4019A8732A20C4EF00D47FF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40B487FE2A44F08E002DA734 /* LogFilesWindowController.swift in Sources */,
+				4088E7042A237E2200004672 /* BackupLogic.swift in Sources */,
+				40B488042A45A3E5002DA734 /* NSAlert_presentError.swift in Sources */,
+				40F5DB962A509C7D00395C84 /* StringRepresentable.swift in Sources */,
+				40E9D2862A2BE38100628193 /* BackupClientProtocol.swift in Sources */,
+				40F5DB9A2A50A7FF00395C84 /* InfoWindowController.swift in Sources */,
+				40F5DB9C2A50B5C400395C84 /* SettingsWindowController_Help.swift in Sources */,
+				4019A87B2A20C4EF00D47FF3 /* AppDelegate.swift in Sources */,
+				40DAB6792A3F6C800052826E /* StaticConfiguration.swift in Sources */,
+				4088E7002A2255F200004672 /* SimpleTableController.swift in Sources */,
+				40B488022A45850D002DA734 /* ExtractWindowController.swift in Sources */,
+				40DAB67B2A3F9CB60052826E /* PipeReader.swift in Sources */,
+				40C626882A445FB3002EBD14 /* MenuController.swift in Sources */,
+				400E897F2A44985100FFE8F6 /* SettingsWindowController.swift in Sources */,
+				40B488062A45AE77002DA734 /* FileNode.swift in Sources */,
+				4088E7332A24C76C00004672 /* BackupDaemonProtocol.swift in Sources */,
+				40E9D28C2A2D15BD00628193 /* ProgressStatus.swift in Sources */,
+				4088E7352A24CF2800004672 /* DaemonProxy.swift in Sources */,
+				4088E7062A237E8C00004672 /* ConfigurationModel.swift in Sources */,
+				40E8AA8A2A447E2E004CC38D /* Formatters.swift in Sources */,
+				4080583C2A38CC01007A02C1 /* LogFilesModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40E9D25B2A2A725D00628193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40E9D2812A2A788D00628193 /* main.swift in Sources */,
+				40E9D2802A2A788D00628193 /* BackupDaemon.swift in Sources */,
+				40DAB67A2A3F6C800052826E /* StaticConfiguration.swift in Sources */,
+				406F5C7D2A4DF1D900B8C121 /* ResourceManager.swift in Sources */,
+				40E9D2772A2A74DE00628193 /* BackupDaemonProtocol.swift in Sources */,
+				40E9D27E2A2A788D00628193 /* PipeReader.swift in Sources */,
+				40E9D2872A2BE38100628193 /* BackupClientProtocol.swift in Sources */,
+				406F5C7F2A4DF8C300B8C121 /* CodeSignatureChecking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4019A87E2A20C4F300D47FF3 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4019A87F2A20C4F300D47FF3 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4019A8822A20C4F300D47FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Debug;
+		};
+		4019A8832A20C4F300D47FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		4019A8852A20C4F300D47FF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = MLZF7K7B5R;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = at.obdev.ODBackup;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ODBackup/ODBackup-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4019A8862A20C4F300D47FF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = MLZF7K7B5R;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = at.obdev.ODBackup;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ODBackup/ODBackup-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		40E9D26C2A2A725F00628193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = MLZF7K7B5R;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ODBackupDaemon/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = at.obdev.ODBackupDaemon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ODBackupDaemon/ODBackupDaemon-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		40E9D26D2A2A725F00628193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = MLZF7K7B5R;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ODBackupDaemon/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = at.obdev.ODBackupDaemon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ODBackupDaemon/ODBackupDaemon-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4019A8722A20C4EF00D47FF3 /* Build configuration list for PBXProject "ODBackup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4019A8822A20C4F300D47FF3 /* Debug */,
+				4019A8832A20C4F300D47FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4019A8842A20C4F300D47FF3 /* Build configuration list for PBXNativeTarget "ODBackup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4019A8852A20C4F300D47FF3 /* Debug */,
+				4019A8862A20C4F300D47FF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40E9D26B2A2A725F00628193 /* Build configuration list for PBXNativeTarget "ODBackupDaemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40E9D26C2A2A725F00628193 /* Debug */,
+				40E9D26D2A2A725F00628193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4019A86F2A20C4EF00D47FF3 /* Project object */;
+}
