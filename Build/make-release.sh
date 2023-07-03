@@ -9,6 +9,8 @@ scheme="ODBackup"
 target="ODBackup"
 configuration='Release'
 
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+
 # All log messages of this script are written to /tmp/buildlog-<PID>.log
 logFile="/tmp/buildlog-$$.log"
 
@@ -58,10 +60,36 @@ resultFolderFile="/tmp/resultfolder-$$.txt"
     fi
 
     # --------------------------------------------------------------------------
+    # Notarization
+    # --------------------------------------------------------------------------
+
+    tmpFile="$(mktemp).zip"
+    zip -rq "$tmpFile" "$TARGET_BUILD_DIR/ODBackup.app"
+    keychain=~/Library/Keychains/Notarization.keychain-db
+    security unlock-keychain -p "$(notarizationPassword)" "$keychain"
+    xcrun notarytool submit "$tmpFile" --wait --keychain-profile "NotarizationCredentials" --keychain "$keychain"
+    rval=$?
+    rm -f "$tmpFile"
+    if [ "$rval" != 0 ]; then
+        echo "*** ERROR: notarization failed"
+        exit 1
+    fi
+    # Once the notarization has completed, we can staple the object
+    if ! xcrun stapler staple "$TARGET_BUILD_DIR/ODBackup.app"; then
+        echo "*** ERROR: stapling failed"
+        exit 1
+    fi
+
+    # --------------------------------------------------------------------------
     # Post processing
     # --------------------------------------------------------------------------
     # Copy all build results to the result folder.
-    resultFolder="$TARGET_BUILD_DIR"
+    bundleVersion=$(plutil -extract CFBundleVersion raw "$TARGET_BUILD_DIR/ODBackup.app/Contents/Info.plist")
+    shortVersion=$(plutil -extract CFBundleShortVersionString raw "$TARGET_BUILD_DIR/ODBackup.app/Contents/Info.plist")
+    resultFolder="$TARGET_BUILD_DIR/ODBackup-$shortVersion-$bundleVersion"
+    mkdir "$resultFolder"
+    mv "$TARGET_BUILD_DIR/ODBackup.app" "$resultFolder"
+    mv "$TARGET_BUILD_DIR"/*.dSYM "$resultFolder"
     mv "$logFile" "$resultFolder/buildlog.log"
 
     echo "$resultFolder" > "$resultFolderFile"
