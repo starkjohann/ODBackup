@@ -81,7 +81,7 @@ private extension ExtractWindowController {
         status = .showingBackups
         Task {
             inProgress = true
-            defer { inProgress = false }
+            // defer { inProgress = false }  requires Xcode 15
             backupsArray = []
             let (rval, stdout, stderr) = await DaemonProxy.shared.listArchives(repository: destination.repository, repositoryName: destination.name, passPhrase: destination.passPhrase, rshCommand: ConfigurationModel.shared.effectiveRSHCommand)
             if rval != 0 {
@@ -92,6 +92,7 @@ private extension ExtractWindowController {
                 array.reverse()
                 backupsArray = array
             }
+            inProgress = false
         }
     }
 
@@ -109,7 +110,7 @@ private extension ExtractWindowController {
         Task {
             let startDate = Date()
             inProgress = true
-            defer { inProgress = false }
+            // defer { inProgress = false }  requires Xcode 15
 
             let (rval, stderr) = await DaemonProxy.shared.listFiles(repository: destination.repository, repositoryName: destination.name, archive: archiveName, passPhrase: destination.passPhrase, rshCommand: ConfigurationModel.shared.effectiveRSHCommand) { [self] lines in
                 self.rootFileNode.addChildren(listingLines: lines) { [self] fileNode in
@@ -120,11 +121,12 @@ private extension ExtractWindowController {
                     }
                 }
             }
+            let duration = -startDate.timeIntervalSinceNow
+            os_log("File listing took \(duration) seconds")
             if rval != 0 {
                 NSAlert.presentError(stderr, title: "Error listing files in backup")
             }
-            let duration = -startDate.timeIntervalSinceNow
-            os_log("File listing took \(duration) seconds")
+            inProgress = false
         }
     }
 
@@ -135,13 +137,14 @@ private extension ExtractWindowController {
         Task {
             let startDate = Date()
             inProgress = true
-            defer { inProgress = false }
+            // defer { inProgress = false }  requires Xcode 15
             let (rval, stderr) = await DaemonProxy.shared.extractFiles(repository: destination.repository, repositoryName: destination.name, archive: archiveName, path: path, passPhrase: destination.passPhrase, rshCommand: ConfigurationModel.shared.effectiveRSHCommand)
             let duration = -startDate.timeIntervalSinceNow
             os_log("File extraction took \(duration) seconds")
             if rval != 0 {
                 NSAlert.presentError(stderr, title: "Error during extract")
             }
+            inProgress = false
         }
     }
 
