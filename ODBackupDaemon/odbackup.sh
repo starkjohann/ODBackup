@@ -58,14 +58,17 @@ exitWithCode() {
         fi
         # delete log files older than 30 days:
         find "$logdir" -type f -name '*.log' -mtime +30 -delete
-        (   # mark log files from aborted runs as error
+        # Since there can be only one backup process running at a time,
+        # if this is a backup run, all "in progress" logs must be from aborted
+        # backups, so mark them as error.
+        if [ "$cmd" = backup ]; then
             cd "$logdir"
             for file in *.inprogress.log; do
                 [ -f "$file" ] || continue
                 newname="$(echo "$file" | sed -e 's/[.]inprogress[.]log$/.error.log/')"
                 mv "$file" "$newname"
             done
-        )
+        fi
         sleep 1 # wait until background reader from stderrFifo has read all data
     fi
     # There seems to be a bug somewhere which prevents a clean exit when
