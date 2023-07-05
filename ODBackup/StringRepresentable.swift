@@ -3,6 +3,7 @@ import Foundation
 protocol StringRepresentable {
 
     var stringRepresentation: String { get }
+
     static func make(representedString: String) -> Self?
 
 }

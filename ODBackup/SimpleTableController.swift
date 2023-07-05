@@ -10,6 +10,8 @@ class SimpleTableController: NSViewController, NSTableViewDataSource {
 
     fileprivate var isUsingKVC = false
 
+    var disablePaste = false
+
     // We delegate the actual work to a concrete subclass so that type parameters can
     // be determined automatically by calling SimpleTableController.make() with appropriate
     // types.
@@ -31,19 +33,33 @@ class SimpleTableController: NSViewController, NSTableViewDataSource {
     // We are an NSViewController subclass in order to participate in the responder
     // chain so that we can implement copy/paste here.
 
-    @objc func copy(_ sender: Any?) {
+    @objc
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(paste(_:)) {
+            return !disablePaste
+        } else if menuItem.action == #selector(copy(_:)) {
+            return copyIsEnabled()
+        }
+        return true
+    }
+
+    @objc
+    func copy(_ sender: Any?) {
         copyToPasteboard()
     }
 
-    @objc func paste(_ sender: Any?) {
+    @objc
+    func paste(_ sender: Any?) {
         pasteFromPasteboard()
     }
 
-    @objc func delete(_ sender: Any?) {
+    @objc
+    func delete(_ sender: Any?) {
         deleteViaMenu()
     }
 
     fileprivate func copyToPasteboard() { abort() }
+    fileprivate func copyIsEnabled() -> Bool { abort() }
     fileprivate func pasteFromPasteboard() { abort() }
     fileprivate func deleteViaMenu() { abort() }
 
@@ -137,6 +153,10 @@ private class ConcreteSimpleTableController<ObservedClass: _KeyValueCodingAndObs
             pasteboard.clearContents()
             pasteboard.setString(rows.joined(separator: "\n"), forType: .string)
         }
+    }
+
+    override func copyIsEnabled() -> Bool {
+        !tableView.selectedRowIndexes.isEmpty
     }
 
     override func pasteFromPasteboard() {

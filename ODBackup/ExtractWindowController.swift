@@ -29,6 +29,7 @@ class ExtractWindowController: NSWindowController {
     @IBOutlet var backupsTableView: NSTableView! {
         didSet {
             backupsTableController = SimpleTableController.make(tableView: backupsTableView, observedObject: self, observedKeyPath: \.backupsArray)
+            backupsTableController.disablePaste = true  // this is a read-only table
             backupsTableView.delegate = self
         }
     }
@@ -346,6 +347,40 @@ extension ExtractWindowController: NSOutlineViewDelegate {
 
 }
 
+// Copying from NSOutlineView
+extension ExtractWindowController {
+
+    // As a window controller, we get copy requests which are not handled by any
+    // of the views and controllers in the responder chain. Our window contains a
+    // text field and the outline view. The text field handles copy, so we can
+    // implement copying for the outline view here, unless we add another view
+    // which does not handle copy by itlsef.
+    @objc
+    func copy(_ sender: Any?) {
+        let rowIndex = fileListOutlineView.selectedRow
+        guard rowIndex >= 0 else {
+            return
+        }
+        var fileNode = fileListOutlineView.item(atRow: rowIndex) as? FileNode
+        var path = ""
+        while let file = fileNode {
+            path = file.name + (path.isEmpty ? "" : ("/" + path))
+            fileNode = fileListOutlineView.parent(forItem: file) as? FileNode
+        }
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(path, forType: .string)
+    }
+
+    @objc
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(copy(_:)) {
+            return fileListOutlineView.selectedRow >= 0 && fileListOutlineView.item(atRow: fileListOutlineView.selectedRow) != nil
+        }
+        return true
+    }
+}
+
 // MARK: - Helper Classes
 
 @objc
@@ -361,6 +396,17 @@ class BackupNode: NSObject {
         } else {
             date = ""
         }
+    }
+
+}
+
+extension BackupNode: StringRepresentable {
+    var stringRepresentation: String {
+        name
+    }
+
+    static func make(representedString: String) -> Self? {
+        nil // do not allow pasting into table of archives
     }
 
 }
