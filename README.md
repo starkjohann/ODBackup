@@ -1,6 +1,6 @@
 # What is ODBackup?
 
-ODBackup is a GUI frontend for [borg backup](https://www.borgbackup.org). It has been tailored for the backup needs at Objective Development (hence the name) and is made available as Open Source under the GPLv3 because it may be useful for others as well.
+ODBackup is a GUI frontend for [borg backup](https://www.borgbackup.org). It has been tailored for the backup needs at [Objective Development](https://obdev.at/) (hence the name) and is made available as Open Source under the GPLv3 because it may be useful for others as well.
 
 # Why Borg Backup?
 
