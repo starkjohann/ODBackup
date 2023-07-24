@@ -173,13 +173,14 @@ extension BackupLogic {
                     alert.informativeText = "\(destination.repository) is not a valid borg repository. Should we try to initialize it?"
                     alert.addButton(withTitle: "Initialize")
                     alert.addButton(withTitle: "Cancel")
-                    if alert.runModal() == .alertFirstButtonReturn {
-                        let (returnCode, errorString) = await DaemonProxy.shared.initializeRepository(destination.repository, passPhrase: destination.passPhrase, rshCommand: model.effectiveRSHCommand)
-                        if returnCode != 0 {
-                            NSAlert.presentError(errorString, title: (returnCode == 1 ? "Warning" : "Error") + " while initializing repository")
-                            if returnCode == 2 {
-                                break
-                            }
+                    if alert.runModal() != .alertFirstButtonReturn {
+                        break   // user cancelled
+                    }
+                    let (returnCode, errorString) = await DaemonProxy.shared.initializeRepository(destination.repository, passPhrase: destination.passPhrase, rshCommand: model.effectiveRSHCommand)
+                    if returnCode != 0 {
+                        NSAlert.presentError(errorString, title: (returnCode == 1 ? "Warning" : "Error") + " while initializing repository")
+                        if returnCode == 2 {
+                            break
                         }
                     }
                 } else {
