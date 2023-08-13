@@ -18,6 +18,9 @@ class DaemonProxy {
         get async {
             if _daemonConnection == nil {
                 _daemonConnection = await connectToDaemon()
+                DispatchQueue.main.async {
+                    ConfigurationModel.shared.daemonConnectionCounter += 1
+                }
             }
             return _daemonConnection
         }

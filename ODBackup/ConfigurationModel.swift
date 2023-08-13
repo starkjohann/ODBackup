@@ -12,6 +12,10 @@ class ConfigurationModel: NSObject {
 
     @objc var userDefaults: UserDefaults { UserDefaults.standard }    // wrapper for KVO dependencies
 
+    // This variable is used to trigger KVO updates when a new daemon connection is established.
+    // The DaemonProxy increments this counter after connecting.
+    @objc dynamic var daemonConnectionCounter = 0
+
     @objc class var keyPathsForValuesAffectingBackupPaths: Set<String> { [#keyPath(userDefaults) + "." + DefaultsKeys.backupPaths.rawValue] }
     @objc dynamic var backupPaths: [String] {
         get {
@@ -160,6 +164,7 @@ class ConfigurationModel: NSObject {
     private var lastUpdateOfSSHPublicKey = Date.distantPast
     private var _sshPublicKey = ""
 
+    @objc class var keyPathsForValuesAffectingSshPublicKey: Set<String> { [#keyPath(daemonConnectionCounter)] }
     @objc dynamic var sshPublicKey: String {
         // If asking for the ssh public key and it turns out that the last update
         // is quite a while ago, trigger a new update. This will update our UI
