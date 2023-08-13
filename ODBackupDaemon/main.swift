@@ -8,6 +8,14 @@ let listener = NSXPCListener(machServiceName: machServiceName)
 listener.delegate = delegate
 listener.resume()
 
+// Global XPCs survive when the app is moved to the trash or/and replaced with a new one.
+// This has the effect that the new app connects to the old XPC, which is not desired
+// because the new app may contain an XPC with new features and bug fixes. We therefore
+// check the path when a client connects and terminate if it has changed.
+let myPID = getpid()
+let myInitialPath = pathForPID(myPID)
+os_log("ODBackupDaemon started at path %{public}@", myInitialPath)
+
 // Contrary to a service listener, the mach service listener returns from `resume()`.
 // We therefore need a run loop.
 RunLoop.current.run()
@@ -19,6 +27,11 @@ class ServiceDelegate: NSObject, NSXPCListenerDelegate {
 
     /// This method is where the NSXPCListener configures, accepts, and resumes a new incoming NSXPCConnection.
     func listener(_ listener: NSXPCListener, shouldAcceptNewConnection connection: NSXPCConnection) -> Bool {
+
+        // Check only during new connections so that we don't endanger running backups when
+        // the app is renamed or moved.
+        checkForReplacedBinary()
+
         var clientAuditToken = connection.auditToken
         let attributes: [CFString: NSData] = [kSecGuestAttributeAudit: NSData(bytes: &clientAuditToken, length: MemoryLayout.size(ofValue: clientAuditToken))]
         var code: SecCode?
@@ -85,4 +98,25 @@ enum Clients {
         }
     }
 
+}
+
+private func checkForReplacedBinary() {
+    let myCurrentPath = pathForPID(myPID)
+    if  myCurrentPath != myInitialPath {
+        os_log("terminating because app was moved from %{public}@ to %{public}@", myInitialPath, myCurrentPath)
+        exit(0)
+    }
+}
+
+private func pathForPID(_ pid: pid_t) -> String {
+    let bufferLength = 4 * MAXPATHLEN
+    var buffer = ContiguousArray<UInt8>(repeating: 0, count: Int(bufferLength))
+    let length = buffer.withUnsafeMutableBufferPointer { bufferPointer in
+        proc_pidpath(getpid(), bufferPointer.baseAddress, UInt32(bufferLength))
+    }
+    if length >= 0, let result = String(bytes: buffer, encoding: .utf8) {
+        return result
+    } else {
+        return "error"
+    }
 }
