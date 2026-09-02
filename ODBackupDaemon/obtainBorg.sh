@@ -4,7 +4,7 @@
 # already downloaded borg to our cache, downloads it on demand and copies the extracted
 # archive to the bundle's Contents/Frameworks directory.
 
-url="https://github.com/borgbackup/borg/releases/download/1.2.4/borg-macos64.tgz"
+url="https://github.com/borgbackup/borg/releases/download/1.4.5/borg-macos-15-arm64-gh.tgz"
 cacheDir=./Download-Cache
 
 mkdir -p "$cacheDir" && cd "$cacheDir"
