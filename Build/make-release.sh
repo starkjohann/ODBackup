@@ -25,7 +25,7 @@ resultFolderFile="/tmp/resultfolder-$$.txt"
     # We use `xcodebuild -target` instead of `xcodebuild -scheme` here, because the
     # latter delivers the build settings of all targets that are associated with this
     # scheme, but we are only interested in the build settings of the main target.
-    variables="$(xcodebuild -target "$target" -configuration "$configuration" -showBuildSettings)"
+    variables="$(xcodebuild -target "$target" -scheme "$scheme" -configuration "$configuration" -showBuildSettings)"
     assignmentScript="$(echo "$variables" | sed -ne 's/^ *\([^ ]*\) *= *\(.*\)$/\1=\2/gp' \
         | grep -v '^UID=' \
         | while read line; do
@@ -45,7 +45,7 @@ resultFolderFile="/tmp/resultfolder-$$.txt"
     # BUILD_DIR = /Users/me/Library/Developer/Xcode/DerivedData/MyApplication-dtryuvbfooihzkedusplaigvmmjp/Build/Products
     echo "Build folder: $BUILD_DIR"
     if [ "$(echo "$BUILD_DIR" | wc -c)" -lt 45 ]; then
-        echo "Build folder probably wrong, not deleting"
+        echo "Build folder probably wrong, not deleting: $BUILD_DIR"
         exit 1
     fi
     rm -rf "$BUILD_DIR/../Intermediates.noindex"    # object files
@@ -64,7 +64,7 @@ resultFolderFile="/tmp/resultfolder-$$.txt"
     # --------------------------------------------------------------------------
 
     tmpFile="$(mktemp).zip"
-    zip -rq "$tmpFile" "$TARGET_BUILD_DIR/ODBackup.app"
+    zip -rqy "$tmpFile" "$TARGET_BUILD_DIR/ODBackup.app"
     keychain=~/Library/Keychains/Notarization.keychain-db
     security unlock-keychain -p "$(notarizationPassword)" "$keychain"
     xcrun notarytool submit "$tmpFile" --wait --keychain-profile "NotarizationCredentials" --keychain "$keychain"

@@ -23,4 +23,5 @@ cd "$destination"
 mv borg* borg
 xattr -r -d com.apple.quarantine borg
 
-codesign -f -s "$EXPANDED_CODE_SIGN_IDENTITY" -o runtime $OTHER_CODE_SIGN_FLAGS $(find borg -type f \( -perm +111 -o -name '*.dylib' -o -name '*.so' \) -print)
+codesign -f --remove-signature $(find borg -type f \( -perm +111 -o -name '*.dylib' -o -name '*.so' \) -print)
+codesign -f -s "$EXPANDED_CODE_SIGN_IDENTITY" --timestamp -o runtime $OTHER_CODE_SIGN_FLAGS $(find borg -type f \( -perm +111 -o -name '*.dylib' -o -name '*.so' \) -print)
