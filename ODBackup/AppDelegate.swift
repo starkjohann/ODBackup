@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         validateDaemonConnection()
+        _ = UserNotificationPresenter.shared  // must be allocated before launch completes so that it can act as notification delegate
         _ = BackupLogic.shared  // ensure that the shared instance is allocated and runs its background tasks
         menuController.showStatusItem()
     }

@@ -25,6 +25,7 @@
 		40B488022A45850D002DA734 /* ExtractWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B488012A45850D002DA734 /* ExtractWindowController.swift */; };
 		40B488042A45A3E5002DA734 /* NSAlert_presentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B488032A45A3E5002DA734 /* NSAlert_presentError.swift */; };
 		40B488062A45AE77002DA734 /* FileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B488052A45AE77002DA734 /* FileNode.swift */; };
+		40C1A0022C10000100D47FF3 /* UserNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C1A0012C10000100D47FF3 /* UserNotificationPresenter.swift */; };
 		40C626882A445FB3002EBD14 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C626872A445FB3002EBD14 /* MenuController.swift */; };
 		40D1178B2A44CEF000FB25A0 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D1178A2A44CEF000FB25A0 /* SettingsWindow.xib */; };
 		40DAB6792A3F6C800052826E /* StaticConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DAB6782A3F6C800052826E /* StaticConfiguration.swift */; };
@@ -97,6 +98,8 @@
 		40B488012A45850D002DA734 /* ExtractWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractWindowController.swift; sourceTree = "<group>"; };
 		40B488032A45A3E5002DA734 /* NSAlert_presentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlert_presentError.swift; sourceTree = "<group>"; };
 		40B488052A45AE77002DA734 /* FileNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNode.swift; sourceTree = "<group>"; };
+		40C1A0012C10000100D47FF3 /* UserNotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationPresenter.swift; sourceTree = "<group>"; };
+		40C1A0032C10000100D47FF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40C626872A445FB3002EBD14 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		40D1178A2A44CEF000FB25A0 /* SettingsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		40DAB6782A3F6C800052826E /* StaticConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticConfiguration.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 				40B488012A45850D002DA734 /* ExtractWindowController.swift */,
 				40B488052A45AE77002DA734 /* FileNode.swift */,
 				40E8AA892A447E2D004CC38D /* Formatters.swift */,
+				40C1A0032C10000100D47FF3 /* Info.plist */,
 				40F5DB992A50A7FF00395C84 /* InfoWindowController.swift */,
 				4080583B2A38CC01007A02C1 /* LogFilesModel.swift */,
 				40B487FD2A44F08E002DA734 /* LogFilesWindowController.swift */,
@@ -185,6 +189,7 @@
 				4088E6FF2A2255F200004672 /* SimpleTableController.swift */,
 				40DAB6782A3F6C800052826E /* StaticConfiguration.swift */,
 				40F5DB952A509C7D00395C84 /* StringRepresentable.swift */,
+				40C1A0012C10000100D47FF3 /* UserNotificationPresenter.swift */,
 			);
 			path = ODBackup;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				40B487FE2A44F08E002DA734 /* LogFilesWindowController.swift in Sources */,
 				4088E7042A237E2200004672 /* BackupLogic.swift in Sources */,
 				40B488042A45A3E5002DA734 /* NSAlert_presentError.swift in Sources */,
+				40C1A0022C10000100D47FF3 /* UserNotificationPresenter.swift in Sources */,
 				40F5DB962A509C7D00395C84 /* StringRepresentable.swift in Sources */,
 				40E9D2862A2BE38100628193 /* BackupClientProtocol.swift in Sources */,
 				40F5DB9A2A50A7FF00395C84 /* InfoWindowController.swift in Sources */,
@@ -493,7 +499,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OD_BUNDLE_VERSION = 6;
+				OD_BUNDLE_VERSION = 8;
 				OD_VERSION = 1.0.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -552,7 +558,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OD_BUNDLE_VERSION = 6;
+				OD_BUNDLE_VERSION = 8;
 				OD_VERSION = 1.0.3;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp -o runtime,hard,kill,library,restrict";
 				SDKROOT = macosx;
@@ -574,6 +580,7 @@
 				DEVELOPMENT_TEAM = MLZF7K7B5R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ODBackup/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -607,6 +614,7 @@
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = MLZF7K7B5R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ODBackup/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

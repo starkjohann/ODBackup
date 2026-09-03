@@ -100,7 +100,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="zDr-WJ-BAR" name="value" keyPath="objectValue.destinationName" id="JGy-cz-RK0"/>
+                                                                <binding destination="zDr-WJ-BAR" name="value" keyPath="objectValue.destinationColumn" id="JGy-cz-RK0"/>
                                                                 <binding destination="zDr-WJ-BAR" name="font" keyPath="objectValue.font" id="aH4-LB-1Js"/>
                                                                 <binding destination="zDr-WJ-BAR" name="textColor" keyPath="objectValue.textColor" id="hCW-ev-osX"/>
                                                             </connections>
@@ -174,7 +174,7 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="Km2-Ib-ioz" name="value" keyPath="objectValue.fileCount" id="IfP-jP-1Wu"/>
+                                                                <binding destination="Km2-Ib-ioz" name="value" keyPath="objectValue.fileCountColumn" id="IfP-jP-1Wu"/>
                                                                 <binding destination="Km2-Ib-ioz" name="font" keyPath="objectValue.font" id="Twe-hp-Q6m"/>
                                                                 <binding destination="Km2-Ib-ioz" name="textColor" keyPath="objectValue.textColor" id="xqJ-gg-8Tc"/>
                                                             </connections>

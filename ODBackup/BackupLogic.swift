@@ -185,7 +185,7 @@ extension BackupLogic {
                     }
                 } else {
                     // other error or warning
-                    NSAlert.presentError(errorString, title: (returnCode == 1 ? "Warning" : "Error") + " during backup")
+                    UserNotificationPresenter.shared.presentError(errorString, title: (returnCode == 1 ? "Warning" : "Error") + " during backup")
                     break
                 }
             }

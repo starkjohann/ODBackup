@@ -23,6 +23,9 @@ class LogFilesModel: NSObject {
     // Number of files: 1473
     static let fileCountRegex = /\nNumber of files: ([0-9]+)\n/
 
+    // Number of bytes we read from the end of a log file to find the statistics.
+    static let logTailSize: UInt64 = 64 * 1024
+
 
     private var updateTimer: Timer?
     private var directorySignature: String?
@@ -70,22 +73,22 @@ class LogFilesModel: NSObject {
                     status = .error
                 }
                 let fileURL = url.appending(path: file)
-                var size = "0"
+                var size = ""
                 var fileCount = 0
 
-                if  status == .success,
-                    let fileHandle = try? FileHandle(forReadingFrom: fileURL),
-                    let content = try? fileHandle.read(upToCount: 2048)
-                {
-                    let logContent = String(decoding: content, as: UTF8.self)
-
-                    if let sizeMatch = logContent.firstMatch(of: Self.byteCountRegex) {
+                // Even a failed backup may have written statistics before it ran into
+                // trouble, so we look for them regardless of the status. We search the
+                // tail of the log because its main body may be full of warnings about
+                // files which could not be read, and we take the last match because
+                // borg's summary is the last thing it prints.
+                if status != .inProgress, let logContent = tail(of: fileURL) {
+                    if let sizeMatch = logContent.matches(of: Self.byteCountRegex).last {
                         // let originalSize = sizeMatch.output.1
                         // let compressedSize = sizeMatch.output.2
                         let deduplicatedSize = sizeMatch.output.3
                         size = String(deduplicatedSize)
                     }
-                    if let countMatch = logContent.firstMatch(of: Self.fileCountRegex) {
+                    if let countMatch = logContent.matches(of: Self.fileCountRegex).last {
                         fileCount = Int(countMatch.output.1) ?? 0
                     }
                 }
@@ -96,6 +99,26 @@ class LogFilesModel: NSObject {
         if self.logFiles != logFiles {
             self.logFiles = logFiles
         }
+    }
+
+    /// Returns the last `logTailSize` bytes of the given file, decoded as UTF-8.
+    private func tail(of fileURL: URL) -> String? {
+        guard let fileHandle = try? FileHandle(forReadingFrom: fileURL) else {
+            return nil
+        }
+        defer {
+            try? fileHandle.close()
+        }
+        guard let fileSize = try? fileHandle.seekToEnd() else {
+            return nil
+        }
+        let offset = fileSize > Self.logTailSize ? fileSize - Self.logTailSize : 0
+        guard (try? fileHandle.seek(toOffset: offset)) != nil, let content = try? fileHandle.readToEnd() else {
+            return nil
+        }
+        // Cutting in the middle of a multi-byte sequence is not a problem here,
+        // the decoder replaces the incomplete character and we only match ASCII.
+        return String(decoding: content, as: UTF8.self)
     }
 
     private func directorySignature(directory: URL, files: [String]) -> String {
@@ -129,6 +152,20 @@ class LogFile: NSObject {
     let status: Status
     @objc dynamic let fileCount: Int
 
+    // We flag warnings and errors with an emoji (in addition to the color of the
+    // line) so that the other columns are free for the counts from the log.
+    @objc dynamic var destinationColumn: String {
+        switch status {
+        case .warning:
+            return "\(destinationName) \u{26A0}\u{FE0F}"     // warning sign
+        case .error:
+            return "\(destinationName) \u{274C}"             // cross mark
+        default:
+            return destinationName
+        }
+    }
+
+    // We show the byte count whenever we could derive it from the log.
     @objc dynamic var bytesSentColumn: String {
         switch status {
         case .inProgress:
@@ -136,10 +173,14 @@ class LogFile: NSObject {
         case .success:
             return bytesSent
         case .warning:
-            return "warning"
+            return bytesSent.isEmpty ? "warning" : bytesSent
         case .error:
-            return "error"
+            return bytesSent.isEmpty ? "error" : bytesSent
         }
+    }
+
+    @objc dynamic var fileCountColumn: String {
+        fileCount > 0 ? "\(fileCount)" : ""
     }
 
     var fileURL: URL {

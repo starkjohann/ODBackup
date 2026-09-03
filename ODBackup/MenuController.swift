@@ -135,7 +135,14 @@ extension MenuController {
     }
 
     private func updateStatusItemFailureIndication() {
-        statusItem?.button?.title = LogFilesModel.shared.lastCompletedBackupLog?.status == .error ? "!" : ""
+        switch LogFilesModel.shared.lastCompletedBackupLog?.status {
+        case .error:
+            statusItem?.button?.title = "!"
+        case .warning:
+            statusItem?.button?.title = "?"
+        default:
+            statusItem?.button?.title = ""
+        }
     }
 
     private func updateIsRunningAnimation() {
