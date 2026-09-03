@@ -205,7 +205,8 @@ private extension MenuController {
         updateStatusItemFailureIndication()
         if let lastBackupLog = logFilesModel.lastCompletedBackupLog {
             if lastBackupLog != lastSuccessfulBackupLog {
-                lines.append("Backup failed at \(lastBackupLog.timestamp)")
+                let verb = lastBackupLog.status == .warning ? "completed with warnings" : "failed"
+                lines.append("Backup \(verb) at \(lastBackupLog.timestamp)")
             }
             if let lastSuccessfulBackupLog {
                 lines.append("Last successful backup\n\(lastSuccessfulBackupLog.timestamp) to \(lastSuccessfulBackupLog.destinationName)")

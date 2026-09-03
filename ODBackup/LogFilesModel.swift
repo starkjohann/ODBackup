@@ -13,8 +13,9 @@ class LogFilesModel: NSObject {
     // Example file names:
     // 2023-06-05_130951._tmp_Test.log
     // 2023-06-05_141543._tmp_Test.error.log
+    // 2023-06-05_152207._tmp_Test.warning.log
                             //   1                            2         3         4           5    6
-    static let fileNameRegex = /^([0-9]{4}-[0-9]{2}-[0-9]{2})_([0-9]{2})([0-9]{2})([0-9]{2})\.(.*?)(\.error|\.inprogress)?\.log$/
+    static let fileNameRegex = /^([0-9]{4}-[0-9]{2}-[0-9]{2})_([0-9]{2})([0-9]{2})([0-9]{2})\.(.*?)(\.error|\.warning|\.inprogress)?\.log$/
 
     // This archive:                3.29 GB              3.07 GB              3.07 GB
     static let byteCountRegex = /\nThis archive: *([0-9.]+ .?B) *([0-9.]+ .?B) *([0-9.]+ .?B)\n/
@@ -58,11 +59,14 @@ class LogFilesModel: NSObject {
                 let timestamp = "\(match.output.1) \(match.output.2):\(match.output.3):\(match.output.4)"
                 let destination = String(match.output.5).replacingOccurrences(of: "_", with: " ")   // spaces have been mapped to underscore by the script
                 let status: LogFile.Status
-                if match.output.6 == ".inprogress" {
+                switch match.output.6 {
+                case ".inprogress":
                     status = .inProgress
-                } else if match.output.6 == nil {
+                case ".warning":
+                    status = .warning
+                case nil:
                     status = .success
-                } else {
+                default:
                     status = .error
                 }
                 let fileURL = url.appending(path: file)
@@ -114,6 +118,7 @@ class LogFile: NSObject {
     enum Status {
         case inProgress
         case success
+        case warning
         case error
     }
 
@@ -130,6 +135,8 @@ class LogFile: NSObject {
             return "in progress"
         case .success:
             return bytesSent
+        case .warning:
+            return "warning"
         case .error:
             return "error"
         }

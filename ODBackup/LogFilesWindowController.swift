@@ -30,7 +30,14 @@ class LogFilesWindowController: NSWindowController {
 extension LogFile {
 
     @objc dynamic var textColor: NSColor? {
-        status == .error ? NSColor.red : nil
+        switch status {
+        case .error:
+            return NSColor.red
+        case .warning:
+            return NSColor.orange
+        default:
+            return nil
+        }
     }
 
     @objc var font: NSFont {
