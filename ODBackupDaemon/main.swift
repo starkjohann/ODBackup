@@ -1,20 +1,23 @@
 import Foundation
 import os
 
+// Global XPCs survive when the app is moved to the trash or/and replaced with a new one.
+// This has the effect that the new app connects to the old XPC, which is not desired
+// because the new app may contain an XPC with new features and bug fixes. We therefore
+// check the path when a client connects and terminate if it has changed.
+// Globals in main.swift are initialized in order (not lazily), so these must be set
+// before the listener is resumed, otherwise an incoming connection may read them
+// uninitialized.
+let myPID = getpid()
+let myInitialPath = pathForPID(myPID)
+os_log("ODBackupDaemon started at path %{public}@", myInitialPath)
+
 // We need to assign the delegate to a variable because listener does not retain its delegate.
 let delegate = ServiceDelegate()
 
 let listener = NSXPCListener(machServiceName: machServiceName)
 listener.delegate = delegate
 listener.resume()
-
-// Global XPCs survive when the app is moved to the trash or/and replaced with a new one.
-// This has the effect that the new app connects to the old XPC, which is not desired
-// because the new app may contain an XPC with new features and bug fixes. We therefore
-// check the path when a client connects and terminate if it has changed.
-let myPID = getpid()
-let myInitialPath = pathForPID(myPID)
-os_log("ODBackupDaemon started at path %{public}@", myInitialPath)
 
 // Contrary to a service listener, the mach service listener returns from `resume()`.
 // We therefore need a run loop.
@@ -112,10 +115,10 @@ private func pathForPID(_ pid: pid_t) -> String {
     let bufferLength = 4 * MAXPATHLEN
     var buffer = ContiguousArray<UInt8>(repeating: 0, count: Int(bufferLength))
     let length = buffer.withUnsafeMutableBufferPointer { bufferPointer in
-        proc_pidpath(getpid(), bufferPointer.baseAddress, UInt32(bufferLength))
+        proc_pidpath(pid, bufferPointer.baseAddress, UInt32(bufferLength))
     }
-    if length >= 0, let result = String(bytes: buffer, encoding: .utf8) {
-        return result
+    if length > 0 {
+        return String(decoding: buffer.prefix(Int(length)), as: UTF8.self)
     } else {
         return "error"
     }
